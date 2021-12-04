@@ -1,14 +1,6 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
 package eu.smolbutbig.aoc;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -16,7 +8,7 @@ public class Graveyard {
    public Graveyard() {
    }
 
-   public static void d3(boolean partTwo) {
+   public static void day3(boolean partTwo) {
 	      Scanner scan = loadFile("d3.txt");
 	      LinkedList<String> list = new LinkedList<>();
 	 
@@ -127,7 +119,7 @@ public class Graveyard {
 	   }
    
    
-   public static void d2(boolean partTwo) {
+   public static void day2(boolean partTwo) {
        Scanner scan = loadFile("d2.txt");
        LinkedList<String> list = new LinkedList<>();
 
@@ -169,7 +161,7 @@ public class Graveyard {
        log(Integer.toString(depth * horizontal));
    }
 
-   public static void d1_1() {
+   public static void day1_1() {
       Scanner scan = loadFile("d1-1.txt");
       LinkedList<Integer> list = new LinkedList<>();
 
@@ -192,7 +184,7 @@ public class Graveyard {
       log("Increased: " + increased);
    }
 
-   public static void d1_2() {
+   public static void day1_2() {
       Scanner scan = loadFile("d1-1.txt");
       LinkedList<Integer> list = new LinkedList<>();
 

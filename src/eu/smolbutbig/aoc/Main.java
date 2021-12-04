@@ -1,15 +1,9 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
 package eu.smolbutbig.aoc;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -17,10 +11,10 @@ public class Main {
    }
 
    public static void main(String[] args) {
-      d4(true);
+      day4(true);
    }
 
-   public static void d4(boolean partTwo) {
+   public static void day4(boolean partTwo) {
       ArrayList<String> input = parseFileString("d4");
       String numbersCalled = input.get(0);
       input.remove(0);
