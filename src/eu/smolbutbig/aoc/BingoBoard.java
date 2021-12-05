@@ -14,7 +14,6 @@ public class BingoBoard {
         	this.board[input.indexOf(row)][split.indexOf(number)] = Integer.parseInt(number);
          }
       }
-
    }
 
    public boolean markNumber(int number) {
