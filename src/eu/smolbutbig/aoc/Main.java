@@ -7,93 +7,87 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-   public Main() {
-   }
+	public Main() {
+	}
 
-   public static void main(String[] args) {
-      day5(true);
-   }
+	public static void main(String[] args) {
+		day6(256);
+	}
 
-   public static void day5(boolean partTwo) {
-	  ArrayList<String> input = parseFileString("d5");
-	  int highestX = 0;
-	  int highestY = 0;
-	   
-	  for (String line : input) {
-		  String[] split = line.split("->");
-		  String[] oneValues = split[0].trim().split(",");
-		  String[] twoValues = split[1].trim().split(",");
-		  
-		  int x1 = Integer.parseInt(oneValues[0]);
-		  int y1 = Integer.parseInt(oneValues[1]);
-		  
-		  int x2 = Integer.parseInt(twoValues[0]);
-		  int y2 = Integer.parseInt(twoValues[1]);
-		  
-		  if (x1 > highestX) {
-			  highestX = x1;
-		  }
-		  if (x2 > highestX) {
-			  highestX = x2;
-		  }
-		  if (y1 > highestY) {
-			  highestY = y1;
-		  }
-		  if (y2 > highestY) {
-			  highestY = y2;
-		  }
-	  }
+	public static void day6(int days) {
+		ArrayList<String> input = parseFileString("d6");
 
-	  Grid grid = new Grid(highestY, highestX, partTwo);
-	  
-	  for (String command : input) {
-		  grid.parseCommand(command);
-	  }
-	  
-	  System.out.println("Found overlaps: " + grid.findAllOverlaps());
-   }
+		String[] fish = input.get(0).split(",");
+		long[] fishes = new long[9];
 
-   public static ArrayList<Integer> parseFileInt(String file) {
-      Scanner scan = loadFile(file + ".txt");
-      ArrayList<Integer> list = new ArrayList<>();
+		for (int i = 0; i < fish.length; i++) {
+			fishes[Integer.parseInt(fish[i])] += 1;
+		}
 
-      while(scan.hasNextLine()) {
-         int read = scan.nextInt();
-         list.add(read);
-      }
+		for (int day = 1; day <= days; day++) {
+			long temporarySix = 0;
+			for (int fishBunch = 0; fishBunch < 9; fishBunch++) {
+				if (fishBunch == 0) {
+					temporarySix = fishes[0];
+				} else {
+					fishes[fishBunch - 1] = fishes[fishBunch];
+				}
+			}
+			fishes[8] = temporarySix;
+			fishes[6] += temporarySix;
+		}
+		
+		long totalFish = 0;
+		
+		for (int fishBunch = 0; fishBunch < 9; fishBunch++) {
+			totalFish += fishes[fishBunch];
+		}
+		
+		log("There are: " + totalFish);
 
-      return list;
-   }
+	}
 
-   public static ArrayList<String> parseFileString(String file) {
-      Scanner scan = loadFile(file + ".txt");
-      ArrayList<String> list = new ArrayList<>();
+	public static ArrayList<Integer> parseFileInt(String file) {
+		Scanner scan = loadFile(file + ".txt");
+		ArrayList<Integer> list = new ArrayList<>();
 
-      while(scan.hasNextLine()) {
-         String read = scan.nextLine();
-         list.add(read);
-      }
+		while (scan.hasNextLine()) {
+			int read = scan.nextInt();
+			list.add(read);
+		}
 
-      return list;
-   }
+		return list;
+	}
 
-   public static void log(String s) {
-      System.out.println(s);
-   }
+	public static ArrayList<String> parseFileString(String file) {
+		Scanner scan = loadFile(file + ".txt");
+		ArrayList<String> list = new ArrayList<>();
 
-   public static void log(int s) {
-      System.out.println(s);
-   }
+		while (scan.hasNextLine()) {
+			String read = scan.nextLine();
+			list.add(read);
+		}
 
-   public static Scanner loadFile(String name) {
-      try {
-         File file = new File(name);
-         Scanner scanner = new Scanner(file);
-         return scanner;
-      } catch (FileNotFoundException var3) {
-         log("No such file!");
-         var3.printStackTrace();
-         return null;
-      }
-   }
+		return list;
+	}
+
+	public static void log(String s) {
+		System.out.println(s);
+	}
+
+	public static void log(int s) {
+		System.out.println(s);
+	}
+
+	public static Scanner loadFile(String name) {
+		try {
+			File file = new File(name);
+			Scanner scanner = new Scanner(file);
+			return scanner;
+		} catch (FileNotFoundException var3) {
+			log("No such file!");
+			var3.printStackTrace();
+			return null;
+		}
+	}
 }

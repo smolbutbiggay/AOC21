@@ -6,7 +6,44 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Graveyard {
-   
+	   public static void day5(boolean partTwo) {
+			  ArrayList<String> input = parseFileString("d5");
+			  int highestX = 0;
+			  int highestY = 0;
+			   
+			  for (String line : input) {
+				  String[] split = line.split("->");
+				  String[] oneValues = split[0].trim().split(",");
+				  String[] twoValues = split[1].trim().split(",");
+				  
+				  int x1 = Integer.parseInt(oneValues[0]);
+				  int y1 = Integer.parseInt(oneValues[1]);
+				  
+				  int x2 = Integer.parseInt(twoValues[0]);
+				  int y2 = Integer.parseInt(twoValues[1]);
+				  
+				  if (x1 > highestX) {
+					  highestX = x1;
+				  }
+				  if (x2 > highestX) {
+					  highestX = x2;
+				  }
+				  if (y1 > highestY) {
+					  highestY = y1;
+				  }
+				  if (y2 > highestY) {
+					  highestY = y2;
+				  }
+			  }
+
+			  Grid grid = new Grid(highestY, highestX, partTwo);
+			  
+			  for (String command : input) {
+				  grid.parseCommand(command);
+			  }
+			  
+			  System.out.println("Found overlaps: " + grid.findAllOverlaps());
+		   }
    public static void day4(boolean partTwo) {
 	      ArrayList<String> input = parseFileString("d4");
 	      String numbersCalled = input.get(0);
